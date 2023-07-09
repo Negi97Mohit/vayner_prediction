@@ -53,6 +53,7 @@ def main():
     
 def why():
     facebook=pd.read_excel('Analyst_Candidate_Dataset_.xlsx',sheet_name='Question 4- Combining Data')
+    facebook.drop(['Date'],axis=1,inplace=True)
     cols1,cols2=st.columns(2)
     with cols1:
         groups_gender=facebook.groupby(['Campaign']).sum()
