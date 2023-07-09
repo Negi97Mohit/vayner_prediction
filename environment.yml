@@ -2,8 +2,6 @@ name: snowpark_xgboost_tpc
 channels:
 dependencies:
   - pip:    
-    - pynytimes
     - pillow
-    - movieposters
-    - IMDbPY
     - plotly
+    - openpyxl
