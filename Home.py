@@ -60,15 +60,9 @@ def why():
         fig=px.bar(groups_gender[['Total Revenue','Media Spend']],height=400,width=600)
         st.plotly_chart(fig)    
     with cols2:
-        # groups_gender=facebook.groupby(['Date','Campaign','Gender']).sum()
-        # groups_gender.reset_index()
-        # fig=px.bar(groups_gender[['Date','Total Revenue','Media Spend']],height=400,width=600)
-        # st.plotly_chart(fig)
         groups_gender=facebook.groupby(['Campaign']).sum()
         groups_gender.reset_index(inplace=True)
-
-
-        fig=px.bar(groups_gender[['Campaign','Total Revenue','Media Spend']],x='Campaign',y=['Total Revenue','Media Spend'],barmode='group',height=400,width=600) #,y='Media Spend',barmode='group',height=400,width=600)
+        fig=px.bar(groups_gender[['Campaign','Total Revenue','Media Spend']],x='Campaign',y=['Total Revenue','Media Spend'],barmode='group',height=400,width=600)         
         st.plotly_chart(fig)
 
     st.markdown("""
@@ -80,7 +74,15 @@ def why():
         """, unsafe_allow_html=True)
     st.markdown('<p class="big-font">Insight!</p>', unsafe_allow_html=True)
     st.write('It is clear from the above two graphs that Evergreen was the most profitable campaign we had. Free shipping campaign had low media spend but a good revenue was attained.')
-   
+    st.write('From the below chart its is evident that during feb 11th and 14 there was an increase in media spend and the company decided to increase the media spent on feb 23 as well and saw a spike in total revenue.')
+    # facebooks campaign by date
+    facebook=pd.read_excel('Analyst_Candidate_Dataset_.xlsx',sheet_name='Question 4- Combining Data')   
+    groups_gender=facebook.groupby(['Date']).sum()
+    groups_gender.reset_index(inplace=True)
+    fig=px.bar(groups_gender[['Date','Total Revenue','Media Spend']],x='Date',y=['Total Revenue','Media Spend'],height=400,width=600) 
+    st.plotly_chart(fig)
+
+            
 if __name__=='__main__':
     main()
     why()
